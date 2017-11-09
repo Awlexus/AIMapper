@@ -1,11 +1,3 @@
-"""
-Data structure
- * X: (ObjectX / 256) - 1
- * Y: (ObjectY / 192) - 1
- * Deltatime: Measured in 1/1 Beats
-"""
-
-
 def circle(raw_hitobject, hitobjects):
     hitobjects.append(','.join(raw_hitobject.split(',')[:4]))
 
