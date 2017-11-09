@@ -7,15 +7,19 @@ Data structure
 
 
 def circle(raw_hitobject, hitobjects):
-    pass
+    hitobjects.append(','.join(raw_hitobject.split(',')[:4]))
 
 
 def slider(raw_hitobject, hitobjects):
-    pass
+    split = raw_hitobject.split(',')
+    first = ','.join(split[:4])
+    second = ','.join(split[5:8])
+    hitobjects.append("%s,%s" % (first, second))
 
 
 def spinner(raw_hitobject, hitobjects):
-    pass
+    split = raw_hitobject.split(',')
+    hitobjects.append(','.join(split[:4] + ',%s' % split[-1].split(':')[0]))
 
 
 def progress_raw_items(raw_hitobjects):
@@ -23,18 +27,18 @@ def progress_raw_items(raw_hitobjects):
 
     # Each appends its contents individually
     for raw_hitobject in raw_hitobjects:
-        if raw_hitobject[3] & 1:
+        type = raw_hitobject.split(',')[3]
+        if type & 1:
             return circle(raw_hitobject, hitobjects)
-        elif raw_hitobject[3] & 2:
+        elif type & 2:
             return slider(raw_hitobject, hitobjects)
-        elif raw_hitobject[3] & 8:
+        elif type & 8:
             return spinner(raw_hitobject, hitobjects)
 
     return hitobjects
 
 
 def get_hitobject_data(osu_file):
-
     # Read All lines
     with open(osu_file) as f:
         hitobjects = f.readlines()
