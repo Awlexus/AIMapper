@@ -28,12 +28,12 @@ def progress_raw_items(raw_hitobjects):
 
     # Each appends its contents individually
     for raw_hitobject in raw_hitobjects:
-        type = int(raw_hitobject.split(',')[3])
-        if type & 1:
+        _type = int(raw_hitobject.split(',')[3])
+        if _type & 1:
             _circle(raw_hitobject, hitobjects)
-        elif type & 2:
+        elif _type & 2:
             _slider(raw_hitobject, hitobjects)
-        elif type & 8:
+        elif _type & 8:
             _spinner(raw_hitobject, hitobjects)
 
     return hitobjects
