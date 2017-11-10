@@ -12,6 +12,7 @@ def _circle(raw_hitobject, hitobjects):
 
 def _slider(raw_hitobject, hitobjects):
     split = raw_hitobject.split(',')
+    split[7] = str(int(round(float(split[7]))))
     first = ','.join(split[:4])
     second = ','.join(split[5:8])
     hitobjects.append("%s,%s" % (first, second))
