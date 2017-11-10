@@ -45,6 +45,7 @@ class OsuDB:
         Read a ULEB128 (variable) from the database-file
         :return:
         """
+        # This needs to wait until I understand how to read this
         pass
 
     def read_single(self):
@@ -84,7 +85,7 @@ class OsuDB:
         """
         if self.read_byte() is 0x08:
             first = self.read_int()
-            if self.file.read() is not 0x0d:
+            if self.read_byte() is not 0x0d:
                 return first
             second = self.read_double()
             return first, second
@@ -248,19 +249,18 @@ class OsuDB:
             'mania_scroll_speed': mania_scroll_speed
         }
 
+    def fetch_n_ranked_maps(n=1000, min_sr=None, max_sr=None, random=True, game_mode='std', use_exported=True,
+                            export_list=True,
+                            filename='exported_maps.pkl'):
+        """
 
-def fetch_n_ranked_maps(n=1000, min_sr=None, max_sr=None, random=True, game_mode='std', use_exported=True,
-                        export_list=True,
-                        filename='exported_maps.pkl'):
-    """
-
-    :param n: number of beatmaps to fetch.
-    :param min_sr: lowest star rating
-    :param max_sr: highest star rating
-    :param random: shuffle entries
-    :param use_exported: Use already exported list
-    :param export_list: export the query to [filename]
-    :param filename: Where to save the exported list
-    :return:
-    """
-    pass
+        :param n: number of beatmaps to fetch.
+        :param min_sr: lowest star rating
+        :param max_sr: highest star rating
+        :param random: shuffle entries
+        :param use_exported: Use already exported list
+        :param export_list: export the query to [filename]
+        :param filename: Where to save the exported list
+        :return:
+        """
+        pass
