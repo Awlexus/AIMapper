@@ -8,3 +8,6 @@ tflearn 3.2<br>
 
 # Current NN structure
 ***To be debated*** 
+
+# License
+A copy of the MIT license can be found in `LICENSE.md`.
