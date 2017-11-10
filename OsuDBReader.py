@@ -1,4 +1,4 @@
-def fetch_n_ranked_maps(n=1000, min_sr=None, max_sr=None, random=True, use_exported=True, export_list=True,
+def fetch_n_ranked_maps(n=1000, min_sr=None, max_sr=None, random=True, game_mode='std', use_exported=True, export_list=True,
                         filename='exported_maps.pkl'):
     """
 
