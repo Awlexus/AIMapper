@@ -1,8 +1,11 @@
 import struct
+import os
 
 
 class OsuDB:
-    def __init__(self, file=None):
+    def __init__(self, file):
+        if not file or not os.path.exists(file):
+            raise FileNotFoundError('Could not read from the specified file "%s"' % file)
         self.file = open(file, mode='rb', encoding='utf8')
         self.version = self.read_int()
         self.folder_count = self.read_int()
