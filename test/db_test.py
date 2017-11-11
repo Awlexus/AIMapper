@@ -1,12 +1,7 @@
-import os
 from db.OsuDbReader import OsuDbReader
 import pprint
 
-osu_path = os.path.join(os.getenv('LOCALAPPDATA'), 'osu!')  # Replace
-
-db_path = os.path.join(osu_path, 'osu!.db')
-
-db_reader = OsuDbReader(db_path)
+db_reader = OsuDbReader()
 
 print('''
 version: %i

@@ -1,8 +1,12 @@
 from db.BasicDbReader import BasicDbReader
+import os
 
 
 class OsuDbReader(BasicDbReader):
     def __init__(self, file=None):
+        # Tries to use a default file if the file was not specified or not found
+        if not file or not os.path.exists(file):
+            file = os.path.join(self.get_default_osu_path(), 'osu!.db')
         super(OsuDbReader, self).__init__(file)
         self.version = self.read_int()
         self.folder_count = self.read_int()
@@ -174,21 +178,3 @@ class OsuDbReader(BasicDbReader):
             'last_modification_time_2': last_modification_time_2,
             'mania_scroll_speed': mania_scroll_speed
         }
-
-    # Todo: Add a function to query
-    def fetch_n_ranked_maps(self, n=1000, min_sr=None, max_sr=None, random=True, game_mode='std', use_exported=True,
-                            export_list=True,
-                            filename='exported_maps.pkl'):
-        """
-
-        :param n: number of beatmaps to fetch.
-        :param min_sr: lowest star rating
-        :param max_sr: highest star rating
-        :param random: shuffle entries
-        :param use_exported: Use already exported list
-        :param export_list: export the query to [filename]
-        :param filename: Where to save the exported list
-        :param game_mode: For what Gamemode the map should be
-        :return:
-        """
-        pass

@@ -58,3 +58,4 @@ def get_hitobject_data(osu_file):
     hitobjects = hitobjects[index + 1:]
 
     return progress_raw_items(hitobjects)
+

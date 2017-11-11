@@ -1,8 +1,11 @@
 from db.BasicDbReader import BasicDbReader
-
+import os
 
 class ScoreDbReader(BasicDbReader):
     def __init__(self, file=None):
+        # Tries to use a default file if the file was not specified or not found
+        if not file or not os.path.exists(file):
+            file = os.path.join(self.get_default_osu_path(), 'scores.db')
         super(ScoreDbReader, self).__init__(file)
         self.version = self.read_int()
         self.maps_count = self.read_int()

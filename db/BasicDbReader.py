@@ -1,9 +1,14 @@
 import struct
 import os
+import platform
 
 
 class BasicDbReader:
-    def __init__(self, file=None):
+    def __init__(self, file):
+        """
+        Initializes a BasicDbReader on the given file.
+        :param file:
+        """
         if not file or not os.path.exists(file):
             raise FileNotFoundError('Could not find from the specified file "%s"' % file)
         self.file = open(file, mode='rb')
@@ -90,3 +95,16 @@ class BasicDbReader:
         """
         return self.read_long()
 
+    def get_default_osu_path(self):
+        osu_path = ''
+        system = platform.system()
+
+        if system == 'Windows':
+            osu_path = os.path.join(os.getenv('LOCALAPPDATA'), 'osu!')  # Localapp
+            if not os.path.exists(osu_path):
+                osu_path = os.path.join(os.getenv('ProgramW6432'), 'osu!')  # "C:\Programm Files"
+        elif system == 'Mac':
+            osu_path = '/Applications/osu!.app/Contents/Resources/drive_c/Program Files/osu!/'
+
+        if osu_path and os.path.exists(osu_path):
+            return osu_path
