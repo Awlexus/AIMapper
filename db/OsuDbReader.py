@@ -8,18 +8,17 @@ class OsuDbReader(BasicDbReader):
         self.folder_count = self.read_int()
         self.unlocked = self.read_boolean()
         self.date_unlocked = self.read_datetime()
-        self.playername = self.read_string()
-        self.num_beatmape = self.read_int()
-        self.read
+        self.player = self.read_string()
+        self.num_beatmaps = self.read_int()
 
     def read_int_double_pair(self):
         """
         Read an int-double-pair (14 bytes) from the database-file
         :return:
         """
-        if self.read_byte() is 0x08:
+        if self.read_byte() == 0x08:
             first = self.read_int()
-            if self.read_byte() is not 0x0d:
+            if self.read_byte() != 0x0d:
                 return first
             second = self.read_double()
             return first, second
@@ -110,7 +109,7 @@ class OsuDbReader(BasicDbReader):
         song_source = self.read_string()
         song_tags = self.read_string()
         online_offset = self.read_short()
-        font = self.read_string()  # Why is that even needed -_-
+        font = self.read_string()  # Why do you even need this -_-
         unplayed = self.read_boolean()
         last_played = self.read_long()
         ignore_map_sound = self.read_boolean()

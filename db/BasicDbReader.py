@@ -5,8 +5,8 @@ import os
 class BasicDbReader:
     def __init__(self, file=None):
         if not file or not os.path.exists(file):
-            raise FileNotFoundError('Could not read from the specified file "%s"' % file)
-        self.file = open(file, mode='rb', encoding='utf8')
+            raise FileNotFoundError('Could not find from the specified file "%s"' % file)
+        self.file = open(file, mode='rb')
 
     def read_byte(self):
         """
@@ -78,7 +78,8 @@ class BasicDbReader:
         Read a string (variable) from the database-file
         :return:
         """
-        if self.read_byte() is 0x0b:
+        byte = self.read_byte()
+        if byte == 0x0b:
             len = self.read_uleb128()
             return self.file.read(len).decode('utf8')
 
@@ -87,5 +88,5 @@ class BasicDbReader:
         Read a Datetime from the database-file
         :return:
         """
-        pass
+        return self.read_long()
 
