@@ -1,0 +1,3 @@
+[submodule "PyOsuDBReader"]
+	path = PyOsuDBReader
+	url = https://github.com/Awlexus/PyOsuDBReader.git
