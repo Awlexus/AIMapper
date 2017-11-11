@@ -20,3 +20,6 @@ class CollectionsDbReader(BasicDbReader):
             'num_maps': num_maps,
             'md5_hashes': md5_hashes
         }
+
+    # Todo: Add a function to query
+

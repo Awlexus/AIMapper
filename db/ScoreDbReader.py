@@ -62,3 +62,6 @@ class ScoreDbReader(BasicDbReader):
             'unknown_minus_1': unknown_minus_1,
             'online_score_id': online_score_id
         }
+
+    # Todo: Add a function to query
+

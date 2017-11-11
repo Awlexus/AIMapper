@@ -176,6 +176,7 @@ class OsuDbReader(BasicDbReader):
             'mania_scroll_speed': mania_scroll_speed
         }
 
+    # Todo: Add a function to query
     def fetch_n_ranked_maps(self, n=1000, min_sr=None, max_sr=None, random=True, game_mode='std', use_exported=True,
                             export_list=True,
                             filename='exported_maps.pkl'):
