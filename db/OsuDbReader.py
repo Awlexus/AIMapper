@@ -1,85 +1,16 @@
-import struct
-import os
+from db.BasicDbReader import BasicDbReader
 
 
-class OsuDB:
-    def __init__(self, file):
-        if not file or not os.path.exists(file):
-            raise FileNotFoundError('Could not read from the specified file "%s"' % file)
-        self.file = open(file, mode='rb', encoding='utf8')
+class OsuDbReader(BasicDbReader):
+    def __init__(self, file=None):
+        super(OsuDbReader, self).__init__(file)
         self.version = self.read_int()
         self.folder_count = self.read_int()
         self.unlocked = self.read_boolean()
         self.date_unlocked = self.read_datetime()
         self.playername = self.read_string()
         self.num_beatmape = self.read_int()
-
-    def read_byte(self):
-        """
-        Read one Byte from the database-file
-        :param file:
-        :return:
-        """
-        return struct.unpack('<B', self.file.read())
-
-    def read_short(self):
-        """
-        Read a Short (2 Byte) from the database-file
-        :return:
-        """
-        return struct.unpack('<H', self.file.read(2))
-
-    def read_int(self):
-        """
-        Read an Integer (4 Bytes) from the database-file
-        :return:
-        """
-        return struct.unpack('<I', self.file.read(4))
-
-    def read_long(self):
-        """
-        Read a Long (8 bytes) from the database-file
-        :return:
-        """
-        return struct.unpack('<Q', self.file.read(8))
-
-    def read_uleb128(self):
-        """
-        Read a ULEB128 (variable) from the database-file
-        :return:
-        """
-        # This needs to wait until I understand how to read this
-        pass
-
-    def read_single(self):
-        """
-        Read a Single (4 bytes) from the database-file
-        :return:
-        """
-        return struct.unpack('f', self.file.read(4))
-
-    def read_double(self):
-        """
-        Read a Double (8 bytes) from the database-file
-        :return:
-        """
-        return struct.unpack('d', self.file.read(8))
-
-    def read_boolean(self):
-        """
-        Read a Boolean (1 byte) from the database-file
-        :return:
-        """
-        return self.read_byte() is not 0
-
-    def read_string(self):
-        """
-        Read a string (variable) from the database-file
-        :return:
-        """
-        if self.read_byte() is 0x0b:
-            len = self.read_uleb128()
-            return self.file.read(len).decode()
+        self.read
 
     def read_int_double_pair(self):
         """
@@ -107,13 +38,6 @@ class OsuDB:
             'offset': offset,
             'inherited': inherited
         }
-
-    def read_datetime(self):
-        """
-        Read a Datetime from the database-file
-        :return:
-        """
-        pass
 
     def read_beatmap(self):
         """
@@ -252,7 +176,7 @@ class OsuDB:
             'mania_scroll_speed': mania_scroll_speed
         }
 
-    def fetch_n_ranked_maps(n=1000, min_sr=None, max_sr=None, random=True, game_mode='std', use_exported=True,
+    def fetch_n_ranked_maps(self, n=1000, min_sr=None, max_sr=None, random=True, game_mode='std', use_exported=True,
                             export_list=True,
                             filename='exported_maps.pkl'):
         """
@@ -264,6 +188,7 @@ class OsuDB:
         :param use_exported: Use already exported list
         :param export_list: export the query to [filename]
         :param filename: Where to save the exported list
+        :param game_mode: For what Gamemode the map should be
         :return:
         """
         pass
