@@ -6,3 +6,9 @@ print('Length:', len(hitobjects))
 print('Head:', hitobjects[:5])
 print('Tail:', hitobjects[-5:])
 
+if __name__ == '__main__':
+    from PyOsuDBReader.pyosudbreader import OsuDbReader
+
+    with OsuDbReader as db:
+        print(db.version)
+
