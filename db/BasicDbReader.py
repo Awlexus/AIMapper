@@ -71,7 +71,7 @@ class BasicDbReader:
         Read a Boolean (1 byte) from the database-file
         :return:
         """
-        return self.read_byte() is not 0
+        return self.read_byte() != 0
 
     def read_string(self):
         """
