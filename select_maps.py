@@ -51,7 +51,7 @@ def save_maps(beatmaps, map_attributes, filename):
     if not beatmaps or not map_attributes or not filename:
         return
 
-    os.mkdir(filename[:filename.rindex(os.sep)], 777)
+    os.makedirs(filename[:filename.rindex(os.sep)], 777)
 
     with open(filename, 'w+', encoding='utf8') as file:
         for index, map_attribute in enumerate(map_attributes):
