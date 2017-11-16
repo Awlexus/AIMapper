@@ -8,7 +8,8 @@ from PyOsuDBReader.pyosudbreader import get_default_osu_path
 
 def prepare_data(map_list, filename):
     # Make parent directories
-    os.makedirs(filename[:filename.rfind(os.sep)], 777)
+    if not os.path.exists(os.path.dirname(filename)):
+        os.makedirs(os.path.dirname(filename), 777)
 
     # Read data
     df = pd.read_csv(map_list, delimiter='\t')  # Make paths absolute
@@ -24,4 +25,4 @@ def prepare_data(map_list, filename):
 
 
 if __name__ == '__main__':
-    prepare_data("map_list/easy_ranked.csv", "data/easy_ranked.pkl")
+    prepare_data('map_list/easy_ranked.csv', 'data/easy_ranked.pkl')

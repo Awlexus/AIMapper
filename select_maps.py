@@ -52,7 +52,8 @@ def save_maps(beatmaps, map_attributes, filename):
         return
 
     # Make parent directories
-    os.makedirs(filename[:filename.rfind(os.sep)], 777)
+    if not os.path.exists(os.path.dirname(filename)):
+        os.makedirs(os.path.dirname(filename), 777)
 
     with open(filename, 'w+', encoding='utf8') as file:
 
@@ -72,4 +73,4 @@ if __name__ == '__main__':
     # For testing purposes
     maps = query_maps(ranked=2, min_sr=1, max_sr=2)
     attributes = ['folder_name', 'osu_file', 'audio_file']
-    save_maps(maps, attributes, os.path.join('map_list', 'easy_ranked.csv'))
+    save_maps(maps, attributes, os.path.join('map_list', 'map_list/easy_ranked.csv'))
