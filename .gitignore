@@ -101,4 +101,5 @@ ENV/
 .mypy_cache/
 
 map_list
-data
+data/*
+.csv
