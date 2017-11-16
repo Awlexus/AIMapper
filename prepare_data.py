@@ -1,4 +1,5 @@
 import os
+import pprint
 
 import pandas as pd
 
@@ -7,10 +8,7 @@ from PyOsuDBReader.pyosudbreader import get_default_osu_path
 
 def prepare_data(map_list, filename):
     # Make parent directories
-    index = filename.rfind(os.sep)
-    if index == -1:
-        index = 0
-    os.makedirs(filename[:index], 777)
+    os.makedirs(filename[:filename.rfind(os.sep)], 777)
 
     # Read data
     df = pd.read_csv(map_list, delimiter='\t')  # Make paths absolute
@@ -19,6 +17,10 @@ def prepare_data(map_list, filename):
     df['osu_file'] = df['folder_name'] + os.sep + df['osu_file']
     df['audio_file'] = df['folder_name'] + os.sep + df['audio_file']
     df.drop('folder_name', axis=1, inplace=True)
+
+    # Write TrainingData
+    df.count(axis=1)
+    df.iloc[:, :5].apply(lambda data: pprint.pprint(data))
 
 
 if __name__ == '__main__':
