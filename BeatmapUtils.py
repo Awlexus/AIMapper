@@ -51,7 +51,7 @@ def get_hitobject_data(osu_file):
             break
 
     # Abort if there was no start found
-    if index == -1:
+    if not -1 < index < len(hitobjects):
         return
 
     # Remove unnecessary lines
