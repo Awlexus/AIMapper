@@ -51,13 +51,17 @@ def save_maps(beatmaps, map_attributes, filename):
     if not beatmaps or not map_attributes or not filename:
         return
 
+    # Make parent directories
     os.makedirs(filename[:filename.rindex(os.sep)], 777)
 
     with open(filename, 'w+', encoding='utf8') as file:
+
+        # Write attribute names as headers
         for index, map_attribute in enumerate(map_attributes):
             file.write(map_attribute)
             file.write('\t' if index < len(map_attributes) - 1 else '\n')
 
+        # Write all attributes
         for beatmap in beatmaps:
             for index, map_attribute in enumerate(map_attributes):
                 file.write(beatmap[map_attribute])
