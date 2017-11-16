@@ -20,7 +20,7 @@ def _slider(raw_hitobject, hitobjects):
 
 def _spinner(raw_hitobject, hitobjects):
     split = raw_hitobject.split(',')
-    hitobjects.append(','.join(split[:4] + ',%s' % split[-1].split(':')[0]))
+    hitobjects.append(','.join(split[:4]) + ',%s' % split[-1].split(':')[0])
 
 
 def progress_raw_items(raw_hitobjects):
