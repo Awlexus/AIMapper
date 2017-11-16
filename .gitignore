@@ -102,4 +102,4 @@ ENV/
 
 map_list
 data/*
-.csv
+*.csv
