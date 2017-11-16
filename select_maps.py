@@ -52,7 +52,10 @@ def save_maps(beatmaps, map_attributes, filename):
         return
 
     # Make parent directories
-    os.makedirs(filename[:filename.rindex(os.sep)], 777)
+    index = filename.rfind(os.sep)
+    if index == -1:
+        index = 0
+    os.makedirs(filename[:index], 777)
 
     with open(filename, 'w+', encoding='utf8') as file:
 
